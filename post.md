@@ -569,11 +569,18 @@ But there in `make_pair`
     one->first  = copy_el(a);
     one->second = copy_el(b);
 ```
+We see that the user-provided copy creator is used.
 
 ### a note on building this ###
 
+  - Each level of *container* adds in general a pair of files, a `.h` header and the implementation file `.c`.
+  - Each level sees only the one below and the code is just copied and adapted
+  - Is is normal to have a constructor, a destructor, a copy constructor, a print function, declared as here or following some pattern. It works fine in general, since is what is done in other fields and languages.
 
-The user-provided copy creator is used.
+  code and a visual studio project are available at [GitHub on this link](https://github.com/ARFNetoOnSO/soc23-1030-pair)
+
+
+
 
 
 
