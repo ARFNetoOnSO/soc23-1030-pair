@@ -489,74 +489,10 @@ Element* make_el(const char* name, const int code)
 }
 ```
 
-```C
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-typedef struct
-{
-    char* name;
-    int   code;
-} Element;
-
-Element* copy_el(Element*);
-Element* delete_el(Element*);
-Element* make_el(const char*, const int);  // helper
-int      show_el(Element*, const char*);
-
-Element* copy_el(Element* orig)
-{
-    if (orig == NULL) return NULL;
-    Element* one = malloc(sizeof(Element));
-    if (one == NULL) return NULL;
-    one->name = malloc(1 + strlen(orig->name));
-    if (one->name == NULL)
-    {
-        free(one);
-        return NULL;
-    }
-    strcpy(one->name, orig->name);
-    one->code = orig->code;
-    return one;
-}
-
-Element* delete_el(Element* orig)
-{
-    if (orig == NULL) return NULL;
-    free(orig->name);
-    free(orig);
-    return NULL;
-}
-
-int show_el(Element* el, const char* msg)
-{
-    if (el == NULL) return -1;
-    if (msg != NULL) printf("%s", msg);
-    printf(" (\"%s\",%d)", el->name, el->code);
-    return 0;
-}
-
-Element* make_el(const char* name, const int code)
-{
-    if (name == NULL) return NULL;
-    Element* one = malloc(sizeof(Element));
-    if (one == NULL) return NULL;
-    one->name = malloc(1 + strlen(name));
-    if (one->name == NULL)
-    {
-        free(one);
-        return NULL;
-    }
-    strcpy(one->name, name);
-    one->code = code;
-    return one;
-}
-```
 
 ### A note on *encapsulation* ###
 
-Here in insert_list a pair is inserted
+Here in `insert_list` a pair is inserted
 ```C
     Pair* pair       = make_pair(p->first, p->second);
 ``` 
